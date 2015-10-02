@@ -1,7 +1,7 @@
 Package: fullcontactR
 Title: R link to Fullcontact.com API
 Version: 0.0.0.9000
-Authors@R: person("J", "Arsenault", email = "JARS3N@Gmail.com, role = c("aut", "cre"))
+Authors@R: person("J", "Arsenault", email = "JARS3N@Gmail.com", role = c("aut", "cre"))
 Description: Package just provides R functions to access the Fullcontact.com API
 Depends: R (>= 3.2.2)
 Imports:
