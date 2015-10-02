@@ -75,7 +75,7 @@ locationEnrichment<-function(place,apikey){
 
 CacheKey<-function(u){
     saveRDS(u,file.path(system.file(package="fullcontactR"),"fullcontactapikey.rds"))
-    if (exists(apikey)==FALSE){
+    if (exists('apikey')==FALSE){
     apkikey<<-u
     }
 }
