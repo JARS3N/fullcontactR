@@ -2,6 +2,7 @@
 #requires jsonlite
 
 mail<-function(email,apikey=apikey){
+checkAPI()
     fromJSON(paste0(
     "https://api.fullcontact.com/v2/person.json?email=",
     email,
@@ -10,18 +11,21 @@ mail<-function(email,apikey=apikey){
     }
 
 phone<-function(phone,apikey=apikey){
+checkAPI()
     fromJSON(paste0(
     "https://api.fullcontact.com/v2/person.json?phone=+",
     phone,"&apiKey=",apikey))
 }
 
 twitter<-function(twitter,apikey=apikey){
+checkAPI()
     fromJSON(paste0(
         "https://api.fullcontact.com/v2/person.json?twitter=",
         twitter,"&apiKey=",apikey))
 }
 
 facebook<-function(facebookusername,apikey=apikey){
+checkAPI()
    out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/person.json?facebookUsername=",
         facebookusername,"&apiKey=",apikey))
@@ -31,6 +35,7 @@ facebook<-function(facebookusername,apikey=apikey){
 }
 
 domain<-function(domain,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/company/lookup.json?domain=",
         domain,"&apiKey=",apikey))
@@ -40,6 +45,7 @@ domain<-function(domain,apikey=apikey){
 }
 
 deducer<-function(deducer,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/name/deducer.json?email=",
         deducer,"&apiKey=",apikey))
@@ -50,6 +56,7 @@ deducer<-function(deducer,apikey=apikey){
 
 
 similarity<-function(q1,q2,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/name/similarity.json?q1=",q1,"&q2=",q2,
         "&apiKey=",apikey))
@@ -58,6 +65,7 @@ similarity<-function(q1,q2,apikey=apikey){
 }
 
 locationNormalizer<-function(place,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/address/locationNormalizer.json?place=",place,
         "&apiKey=",apikey))
@@ -66,6 +74,7 @@ locationNormalizer<-function(place,apikey=apikey){
 }
 
 locationEnrichment<-function(place,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/address/locationEnrichment.json?place=",place,
         "&apiKey=",apikey))
@@ -84,6 +93,7 @@ CacheKey<-function(u){
 
 
 disposable<-function(email,apikey=apikey){
+checkAPI()
  out_string<- paste0("https://api.fullcontact.com/v2/email/disposable.json?email=",
         email,
         "&apiKey=",apikey)
@@ -94,6 +104,7 @@ disposable<-function(email,apikey=apikey){
 
 #https://api.fullcontact.com/v2/name/stats.json?name=john&apiKey=xxxx
 stats<-function(name,apikey=apikey){
+checkAPI()
     out<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/name/stats.json?name=",name,
         "&apiKey=",apikey))
@@ -105,6 +116,7 @@ stats<-function(name,apikey=apikey){
 
 
 parser<-function(q,apikey=apikey){
+checkAPI()
     out_string<- fromJSON(paste0(
         "https://api.fullcontact.com/v2/name/parser.json?q=",q,
         "&apiKey=",apikey))
@@ -112,3 +124,5 @@ parser<-function(q,apikey=apikey){
     out$Timestamp<-Sys.time()
     out
 }
+# shortand to check for APIkey when starting functions,only sends warnings,still attempts
+checkAPI<-if(exists("apikey")!=T){warning('No apikey detected')}
